@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+    db-service-api:
+        container_name: db-service-api
+        image: postgres:alpine
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: ExceptSuddenMexicoFollowSunday48081
+            POSTGRES_USER: service-api
+            POSTGRES_DB: service-api
+        networks:
+            - nw_service_api
+        volumes:
+            - ./service-api:/var/lib/postgresql/data
+        ports:
+            - "4432:5432"
+    pgadmin:
+        container_name: pgadmin4_container
+        image: dpage/pgadmin4
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com
+            PGADMIN_DEFAULT_PASSWORD: root
+        ports:
+            - "5050:80"
+        networks:
+            - nw_service_api
+networks:
+    nw_service_api:
+        name: nw_service_api

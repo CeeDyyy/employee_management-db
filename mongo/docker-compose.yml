@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+
+    mongo-service-api:
+        container_name: mongo-service-api
+        image: mongo
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: service-api-mongodb
+            MONGO_INITDB_ROOT_PASSWORD: ExceptSuddenMexicoFollowSunday48081
+        volumes:
+            - './data:/data/db'
+            - './data/configdb:/data/configdb'
+        networks:
+            - nw_service_api
+        ports: 
+            - "47017:27017"
+
+networks:
+    nw_service_api:
+        external:
+            name: proxy-service-api

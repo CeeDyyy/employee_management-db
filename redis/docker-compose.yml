@@ -1,0 +1,13 @@
+version: '3.5'
+services:
+    redis-service-api-cache:
+        container_name: redis-service-api-cache
+        build: ./cache/
+        restart: always
+        volumes:
+            - ./cache/data:/data
+        networks:
+            - nw_service_api
+networks:
+    nw_service_api:
+        name: nw_service_api
